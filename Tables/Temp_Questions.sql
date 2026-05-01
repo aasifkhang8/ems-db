@@ -55,34 +55,49 @@ values
 ('Advance','Most difficult questions'),
 ('Appeared','Questions that is asked in competitive exam');
 
-#===================subject=================================
-create table subject(id smallint primary key auto_increment,
-						name varchar(32),
-						description varchar(150)
+#===================subjects=================================
+create table subjects(id smallint primary key auto_increment,
+						name varchar(64) NOT NULL,
+						description varchar(256)
 						);
 						
-insert into subject(name,description)
+insert into subjects(name,description)
 values
 ('Physics','All chapters of Physics present under this.'),
-('Chemistory','All chapters of Physics present under this.'),
-('Maths','All chapters of Physics present under this.'),
-('Biology','All chapters of Physics present under this.');
+('Chemistory','All chapters of Chemistory present under this.'),
+('Mathematics','All chapters of Mathematics present under this.'),
+('Biology','All chapters of Biology present under this.');
+
+#===========================topics==========================
+CREATE TABLE topics (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    subject_id smallint NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    description varchar(256)
+);
+
+INSERT INTO topics (subject_id, name) VALUES 
+(3, 'Algebra'),
+(3, 'Geometry'),
+(1, 'light'),
+(2, 'bond'), 
+(4, 'botony'), 
+(1, 'Mechanics');
 
 #===================chapters=================================
 create table chapters(id int primary key auto_increment,
-						subject_id smallint,
-						name varchar(64),
+						topic_id int not null,
+						name varchar(64) not null,
 						description varchar(150)
 						);
 						
-insert into chapters(subject_id,name,description)
+insert into chapters(topic_id,name,description)
 values
-(1,'light','All chapters of Physics present under this.'),
-(2,'atomic bonding','All chapters of Physics present under this.'),
-(3,'calculus','All chapters of Physics present under this.'),
-(4,'botony','All chapters of Physics present under this.');
-
-
-					
-					
-					
+(3,'light','All chapters of Physics present under this.'),
+(4,'atomic bonding','All chapters of Physics present under this.'),
+(1,'calculus','All chapters of Physics present under this.'),
+(5,'botony','All chapters of Physics present under this.'),
+(1, 'Linear Equations',''),
+(1, 'Quadratic Equations',''),
+(2, 'Triangles',''),
+(6, 'Newtons Laws','');					
